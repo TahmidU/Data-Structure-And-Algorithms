@@ -104,11 +104,21 @@ public class Heap
         data[larger] = temp;
     }
 
+    public void heapify(int[] array)
+    {
+        data = array;
+        //Turns array into heap.
+        for(int i = data.length/2 - 1; i>=0; i--)
+        {
+            moveDown(data, i, data.length);
+        }
+    }
+
     public void print()
     {
-        for(int i: data)
+        for (int a: data)
         {
-            System.out.println(i);
+            System.out.println(a);
         }
     }
 }

@@ -1,4 +1,4 @@
-package dynamic_ds;
+package stack;
 
 public class Stack
 {

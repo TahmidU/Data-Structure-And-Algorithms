@@ -1,22 +1,28 @@
-import dynamic_ds.Stack;
+import heap.Heap;
+import linked_lists.SinglyLinkedList;
+import sort.HeapSort;
+import stack.Stack;
 
 public class Main
 {
 
     public static void main(String args[])
     {
-        Stack stack = new Stack();
+        Heap heap = new Heap(5);
 
-        stack.optimisedPush(5);
-        stack.optimisedPush(3);
-        stack.optimisedPush(2);
-        stack.optimisedPush(1);
-        stack.optimisedPush(8);
+        heap.add(4);
+        heap.add(3);
+        heap.add(8);
+        heap.add(2);
+        heap.add(1);
 
-        //System.out.println(stack.stackLength());
+        //heap.print();
 
-        //System.out.println(stack.isEmpty());
-        stack.print();
+        int[] a = {5,2,3,1,7};
+
+        heap.heapify(a);
+        heap.print();
+
     }
 
 }
