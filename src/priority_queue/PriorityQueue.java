@@ -43,7 +43,7 @@ public class PriorityQueue
             data[place] = data[place-1];
             place--;
         }
-        
+
         //Place the new element in its rightful position.
         data[position] = elt;
     }

@@ -48,17 +48,57 @@ public class SinglyLinkedList
         return elt;
     }
 
+    public int deleteLastNode()
+    {
+        int elt = tail.info;
+
+        if(head == tail)
+            head = tail = null;
+        else
+            {
+                Node temp = head;
+                while(temp.next != tail)
+                {
+                    temp = temp.next;
+                }
+                temp.next = null;
+                tail = temp;
+            }
+
+        return elt;
+    }
+
     public void print()
     {
-        while(head != null)
-        {
-            if(head.next != null)
-                System.out.print(head.info+"->");
-            else
-                System.out.print(head.info);
+        Node point = head;
 
-            head = head.next;
+        while(point != null)
+        {
+            if(point.next != null)
+                System.out.print(point.info+"->");
+            else
+                System.out.print(point.info);
+
+            point = point.next;
         }
+    }
+
+    public Node recursivePrint(Node point)
+    {
+        Node aux = point;
+
+        if(aux == null) {
+            return null;
+        }
+        else {
+            System.out.println(aux.info);
+            return recursivePrint(point.next);
+        }
+    }
+
+    public Node getHead()
+    {
+        return head;
     }
 
 }

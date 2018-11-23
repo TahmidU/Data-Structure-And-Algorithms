@@ -8,20 +8,18 @@ public class Main
 
     public static void main(String args[])
     {
-        Heap heap = new Heap(5);
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
 
-        heap.add(4);
-        heap.add(3);
-        heap.add(8);
-        heap.add(2);
-        heap.add(1);
+        singlyLinkedList.addToHead(5);
+        singlyLinkedList.addToHead(3);
+        singlyLinkedList.addToHead(8);
+        singlyLinkedList.addToHead(10);
+        singlyLinkedList.addToHead(11);
 
-        //heap.print();
+        //singlyLinkedList.print();
 
-        int[] a = {5,2,3,1,7};
-
-        heap.heapify(a);
-        heap.print();
+        singlyLinkedList.deleteLastNode();
+        singlyLinkedList.recursivePrint(singlyLinkedList.getHead());
 
     }
 
