@@ -1,5 +1,7 @@
 import heap.Heap;
+import linked_lists.CircularList;
 import linked_lists.SinglyLinkedList;
+import linked_lists.double_linked_list.DoublyLinkedList;
 import sort.HeapSort;
 import stack.Stack;
 
@@ -8,18 +10,30 @@ public class Main
 
     public static void main(String args[])
     {
-        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        CircularList c1 = new CircularList();
+        CircularList c2 = new CircularList();
 
-        singlyLinkedList.addToHead(5);
-        singlyLinkedList.addToHead(3);
-        singlyLinkedList.addToHead(8);
-        singlyLinkedList.addToHead(10);
-        singlyLinkedList.addToHead(11);
+        c1.addToHead(3);
+        c1.addToHead(2);
+        c1.addToHead(6);
+        c1.addToHead(5);
 
-        //singlyLinkedList.print();
+        c2.addToHead(9);
+        c2.addToHead(1);
+        c2.addToHead(11);
+        c2.addToHead(50);
 
-        singlyLinkedList.deleteLastNode();
-        singlyLinkedList.recursivePrint(singlyLinkedList.getHead());
+        CircularList c3 = new CircularList();
+
+        c3 = c3.orderedList(c1, c2);
+
+        c3.print();
+        //circularList.addToHead(500);
+        //circularList.addToHead(6);
+        //circularList.addToHead(89);
+        //circularList.addToHead(9);
+
+        //System.out.println(circularList.findMax());
 
     }
 
