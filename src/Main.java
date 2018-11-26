@@ -1,3 +1,6 @@
+import hash.HashTableChaining;
+import hash.HashTableLinearProbing;
+import hash.HashTableQuadProbing;
 import heap.Heap;
 import linked_lists.CircularList;
 import linked_lists.SinglyLinkedList;
@@ -10,30 +13,19 @@ public class Main
 
     public static void main(String args[])
     {
-        CircularList c1 = new CircularList();
-        CircularList c2 = new CircularList();
+        HashTableQuadProbing hashTableQuadProbing = new HashTableQuadProbing(10);
 
-        c1.addToHead(3);
-        c1.addToHead(2);
-        c1.addToHead(6);
-        c1.addToHead(5);
+        hashTableQuadProbing.insert(8);
+        hashTableQuadProbing.insert(3);
+        hashTableQuadProbing.insert(3);
+        hashTableQuadProbing.insert(3);
 
-        c2.addToHead(9);
-        c2.addToHead(1);
-        c2.addToHead(11);
-        c2.addToHead(50);
+        hashTableQuadProbing.delete(3);
 
-        CircularList c3 = new CircularList();
+        hashTableQuadProbing.insert(2);
 
-        c3 = c3.orderedList(c1, c2);
 
-        c3.print();
-        //circularList.addToHead(500);
-        //circularList.addToHead(6);
-        //circularList.addToHead(89);
-        //circularList.addToHead(9);
-
-        //System.out.println(circularList.findMax());
+        hashTableQuadProbing.print();
 
     }
 
