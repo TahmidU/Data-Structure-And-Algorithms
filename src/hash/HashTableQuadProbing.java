@@ -32,6 +32,10 @@ public class HashTableQuadProbing
             {
                 table[(hash(key) + i*i)%table.length] = key;
                 break;
+            }else if(table[(hash(key) - i*i)%table.length] == null)
+            {
+                table[(hash(key) - i*i)%table.length] = key;
+                break;
             }
         }
         elements++;
@@ -41,7 +45,7 @@ public class HashTableQuadProbing
     {
         int count = 0;
 
-        for(int i = hash(key); table[i] != null; i = (i*i)%table.length)
+        for(int i = hash(key); table[i] != null; i++)
         {
             // So that the loop does not go infinitely if the array is full.
             if (count == table.length)
@@ -49,10 +53,14 @@ public class HashTableQuadProbing
                 break;
             }
 
-            if(table[i] == key)
+            if(table[(hash(key) + i*i)%table.length] == key)
             {
                 System.out.println("Found: " + key);
-                return;
+                break;
+            }else if(table[(hash(key) - i*i)%table.length] == key)
+            {
+                System.out.println("Found: " + key);
+                break;
             }
 
             count++;

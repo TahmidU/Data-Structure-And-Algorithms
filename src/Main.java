@@ -20,7 +20,7 @@ public class Main
         hashTableQuadProbing.insert(3);
         hashTableQuadProbing.insert(3);
 
-        hashTableQuadProbing.delete(3);
+        //hashTableQuadProbing.delete(3);
 
         hashTableQuadProbing.insert(2);
 
