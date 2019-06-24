@@ -3,8 +3,8 @@ package linked_lists;
 public class SinglyLinkedList
 {
 
-    private Node head = null;
-    private Node tail = null;
+    public Node head = null;
+    public Node tail = null;
 
     public boolean isEmpty()
     {

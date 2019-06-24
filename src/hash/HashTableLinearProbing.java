@@ -84,6 +84,11 @@ public class HashTableLinearProbing
         elements--;
     }
 
+    public Integer[] getTable()
+    {
+        return table;
+    }
+
     public void print()
     {
         for(int i = 0; i<table.length; i++)

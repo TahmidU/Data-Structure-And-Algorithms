@@ -31,6 +31,9 @@ public class HeapSort
         int current = first;
         while ((current * 2) + 1 < last)
         {
+
+            //System.out.println(current);
+
             int leftChild = left(current);
             int rightChild = right(current);
 
@@ -44,6 +47,7 @@ public class HeapSort
             }
             if(current != first)
             {
+                //System.out.println(current + " " + first);
                 swap(data, current, first);
                 first = current;
             }else
@@ -51,6 +55,8 @@ public class HeapSort
                 break;
             }
         }
+
+        //
 
     }
 
@@ -61,6 +67,7 @@ public class HeapSort
         //First turn the array into a heap.
         for(int i = data.length/2 - 1; i>=0; i--)
         {
+            //System.out.println(i);
             moveDown(data, i, data.length);
         }
 
@@ -68,8 +75,9 @@ public class HeapSort
         //Begin sorting.
         for(int i = data.length - 1; i>=1; i--)
         {
+            System.out.println(i);
             swap(data, 0, i); //Swap the root. Root would be always the max number.
-            moveDown(data, 0, i); //heapify.
+            moveDown(data, 0, i);
         }
 
         return data;
