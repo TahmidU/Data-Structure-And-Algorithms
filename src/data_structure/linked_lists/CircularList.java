@@ -1,9 +1,11 @@
-package linked_lists;
+package data_structure.linked_lists;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.util.Iterator;
 
-public class CircularList
+/**
+ * A linked list that forms a bunch of circularly connected nodes (last node connected to the first node).
+ */
+public class CircularList implements Iterable<Node>
 {
     public Node tail = null;
 
@@ -46,35 +48,52 @@ public class CircularList
         return elt;
     }
 
-    public void print()
-    {
-        if(!isEmpty())
-        {
+    @Override
+    public Iterator<Node> iterator() {
+        return new Iterator<Node>() {
             Node p = tail;
+            boolean tailVisited = false;
 
-            //You have to remember that these nodes do not contain null in next.
-            do
-                {
-                    p = p.next; //Start from the head.
-                    System.out.println(p.info);
-                }while (p != tail); //Print till it reaches the tail.
-        }
+            @Override
+            public boolean hasNext()
+            {
+                return !tailVisited;
+            }
+
+            @Override
+            public Node next() {
+                if(p.next == tail)
+                    tailVisited = true;
+                p = p.next;
+                return p;
+            }
+        };
     }
 
-    public int findMax()
+    public static void main(String[] args)
     {
-        Node pointer = tail;
+        CircularList circularList = new CircularList();
+        circularList.addToHead(5);
+        circularList.addToHead(2);
+        circularList.addToTail(10);
+        circularList.addToHead(11);
+        circularList.deleteFromHead();
+        for(Node c : circularList) System.out.println(c.info);
+
+        //Find Max - Example
+        Node pointer = circularList.tail;
         int tempMax = 0;
 
-        if(!isEmpty()) {
+        if(!circularList.isEmpty()) {
             do {
                 pointer = pointer.next;
 
                 if (pointer.info > tempMax)
                     tempMax = pointer.info;
 
-            } while (pointer != tail);
+            } while (pointer != circularList.tail);
         }
-        return tempMax;
+
+        System.out.println("Max: " + tempMax);
     }
 }

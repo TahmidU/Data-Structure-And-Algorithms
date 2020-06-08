@@ -1,4 +1,4 @@
-package linked_lists;
+package data_structure.linked_lists;
 
 public class Node
 {

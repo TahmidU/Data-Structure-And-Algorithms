@@ -1,5 +1,8 @@
-package linked_lists;
+package data_structure.linked_lists;
 
+/**
+ * A linked list made of connected nodes - Unidirectional.
+ */
 public class SinglyLinkedList
 {
 
@@ -68,6 +71,30 @@ public class SinglyLinkedList
         return elt;
     }
 
+    public int deleteIndex(int index)
+    {
+        if(index == 0)
+            return deleteFromHead();
+
+        Node aux = head;
+        for(int i = 0; i <= index; i++)
+        {
+            if(i + 1 == index)
+            {
+                if(aux.next == null)
+                    throw new IndexOutOfBoundsException("Index " + index + " is out of bounds!");
+                if(aux.next == tail)
+                    return deleteLastNode();
+
+                int info = aux.next.info;
+                aux.next = aux.next.next;
+                return info;
+            }
+            aux = aux.next;
+        }
+        throw new IndexOutOfBoundsException("Index " + index + " is out of bounds!");
+    }
+
     public void print()
     {
         Node point = head;
@@ -77,28 +104,24 @@ public class SinglyLinkedList
             if(point.next != null)
                 System.out.print(point.info+"->");
             else
-                System.out.print(point.info);
+                System.out.print(point.info+"\n");
 
             point = point.next;
         }
     }
 
-    public Node recursivePrint(Node point)
+    public static void main(String[] args)
     {
-        Node aux = point;
+        SinglyLinkedList s = new SinglyLinkedList();
 
-        if(aux == null) {
-            return null;
-        }
-        else {
-            System.out.println(aux.info);
-            return recursivePrint(point.next);
-        }
-    }
-
-    public Node getHead()
-    {
-        return head;
+        s.addToHead(5);
+        s.addToHead(10);
+        s.addToTail(15);
+        s.addToTail(20);
+        System.out.println("Is empty? " + s.isEmpty());
+        s.print();
+        System.out.println("Deleted: " + s.deleteIndex(1));
+        s.print();
     }
 
 }

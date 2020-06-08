@@ -1,4 +1,4 @@
-package linked_lists.double_linked_list;
+package data_structure.linked_lists.double_linked_list;
 
 public class DLLNode
 {

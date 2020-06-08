@@ -1,5 +1,8 @@
-package linked_lists.double_linked_list;
+package data_structure.linked_lists.double_linked_list;
 
+/**
+ * A linked list made of connected nodes - bidirectional.
+ */
 public class DoublyLinkedList
 {
     private DLLNode head = null;
@@ -7,12 +10,12 @@ public class DoublyLinkedList
 
     public boolean isEmpty()
     {
-        return head == null;
+        return head != null;
     }
 
     public void addToHead(int elt)
     {
-        if(!isEmpty())
+        if(isEmpty())
         {
             head = new DLLNode(elt, head, null); //Make a new Head and point this new Head to the old Head.
             head.next.prev = head; //Point the prev of head.next to the new Head.
@@ -24,7 +27,7 @@ public class DoublyLinkedList
 
     public void addToTail(int elt)
     {
-        if(!isEmpty())
+        if(isEmpty())
         {
             tail = new DLLNode(elt, null, tail); //Make a new Tail and point this new Tail to the old Tail.
             tail.prev.next = tail; //Point the next of tail.prev to the new Tail.
@@ -97,57 +100,80 @@ public class DoublyLinkedList
         }
     }
 
-    public void delete(DLLNode p)
+    public int deleteIndex(int index)
     {
-        if(p.prev == null)
-            head = p.next;
-        else
-            p.prev.next = p.next;
+        if(index == 0)
+            return deleteFromHead();
 
-        if(p.next == null)
-            tail = p.prev;
-        else
-            p.next.prev = p.prev;
+        int count = 0;
+        DLLNode aux = head;
+        do
+            {
+                if(count + 1 == index)
+                {
+                    int info = aux.next.info;
+
+                    if(aux.next == tail)
+                        return deleteFromTail();
+
+                    aux.next = aux.next.next;
+                    aux.next.prev = aux;
+                    return info;
+                }
+                count++;
+
+                aux = aux.next;
+            }while (aux.next != null);
+
+        throw new IndexOutOfBoundsException("Index " + index + " is out of bounds!");
     }
 
     public void printForward()
     {
-        DLLNode pointer = head;
+        DLLNode point = head;
 
-        while (pointer != null)
+        while(point != null)
         {
-            System.out.println(pointer.info);
-            pointer = pointer.next;
+            if(point.next != null)
+                System.out.print(point.info+"<->");
+            else
+                System.out.print(point.info+"\n");
+
+            point = point.next;
         }
     }
 
     public void printBackward()
     {
-        DLLNode pointer = tail;
+        DLLNode point = tail;
 
-        while (pointer != null)
+        while(point != null)
         {
-            System.out.println(pointer.info);
-            pointer = pointer.prev;
+            if(point.prev != null)
+                System.out.print(point.info+"<->");
+            else
+                System.out.print(point.info+"\n");
+
+            point = point.prev;
         }
     }
 
-    public int findMax()
+    public static void main(String args[])
     {
-        DLLNode pointer = head;
-        int tempMax = 0;
+        DoublyLinkedList d = new DoublyLinkedList();
 
-        while (pointer != null)
-        {
-            if(pointer.info > tempMax)
-                tempMax = pointer.info;
+        System.out.println("Is empty? " + d.isEmpty());
 
-            pointer = pointer.next;
-        }
+        d.addToTail(5);
+        d.addToHead(10);
+        d.addToTail(15);
+        d.addToTail(11);
 
-        return tempMax;
+        d.printForward();
+        d.printBackward();
+
+        System.out.println("Deleted: " + d.deleteIndex(3));
+        d.printForward();
     }
-
-
 
 }
