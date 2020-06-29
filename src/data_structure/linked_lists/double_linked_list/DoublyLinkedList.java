@@ -41,12 +41,12 @@ public class DoublyLinkedList
     {
         int elt = head.info;
 
-        //If one Node exists
+        //If one LinkedNode exists
         if(head == tail)
             head = tail = null;
         else
             {
-                head = head.next; //Make the 2nd Node the new Head.
+                head = head.next; //Make the 2nd LinkedNode the new Head.
                 head.prev = null; //The new Heads prev points to null.
             }
 
@@ -57,12 +57,12 @@ public class DoublyLinkedList
     {
         int elt = tail.info;
 
-        //If one Node exists
+        //If one LinkedNode exists
         if(head == tail)
             head = tail = null;
         else
             {
-                tail = tail.prev; //Make the 2nd last Node the new Tail.
+                tail = tail.prev; //Make the 2nd last LinkedNode the new Tail.
                 tail.next = null; //The new Tail points to null.
             }
 

@@ -5,9 +5,9 @@ import java.util.Iterator;
 /**
  * A linked list that forms a bunch of circularly connected nodes (last node connected to the first node).
  */
-public class CircularList implements Iterable<Node>
+public class CircularList implements Iterable<LinkedNode>
 {
-    public Node tail = null;
+    public LinkedNode tail = null;
 
     public boolean isEmpty()
     {
@@ -18,21 +18,21 @@ public class CircularList implements Iterable<Node>
     {
         if(isEmpty())
         {
-            //Create a new Node then point to itself.
-            tail = new Node(elt);
+            //Create a new LinkedNode then point to itself.
+            tail = new LinkedNode(elt);
             tail.next = tail;
         }else
             {
                 //tail.next now points to a new node.
                 //Make the new node point to what the previous tail.next was point to.
-                tail.next = new Node(elt, tail.next);
+                tail.next = new LinkedNode(elt, tail.next);
             }
     }
 
     public void addToTail(int elt)
     {
         addToHead(elt);
-        tail = tail.next; //Tail points to where ever the last Node is pointing to (the first node).
+        tail = tail.next; //Tail points to where ever the last LinkedNode is pointing to (the first node).
     }
 
     public int deleteFromHead()
@@ -40,18 +40,18 @@ public class CircularList implements Iterable<Node>
         int elt = tail.next.info;
 
         if(tail == tail.next)
-            tail = null; //If there's one Node in the list.
+            tail = null; //If there's one LinkedNode in the list.
         else
             {
-                tail.next = tail.next.next; //Make pointer point to the Node that the Head was pointing to.
+                tail.next = tail.next.next; //Make pointer point to the LinkedNode that the Head was pointing to.
             }
         return elt;
     }
 
     @Override
-    public Iterator<Node> iterator() {
-        return new Iterator<Node>() {
-            Node p = tail;
+    public Iterator<LinkedNode> iterator() {
+        return new Iterator<LinkedNode>() {
+            LinkedNode p = tail;
             boolean tailVisited = false;
 
             @Override
@@ -61,7 +61,7 @@ public class CircularList implements Iterable<Node>
             }
 
             @Override
-            public Node next() {
+            public LinkedNode next() {
                 if(p.next == tail)
                     tailVisited = true;
                 p = p.next;
@@ -78,10 +78,10 @@ public class CircularList implements Iterable<Node>
         circularList.addToTail(10);
         circularList.addToHead(11);
         circularList.deleteFromHead();
-        for(Node c : circularList) System.out.println(c.info);
+        for(LinkedNode c : circularList) System.out.println(c.info);
 
         //Find Max - Example
-        Node pointer = circularList.tail;
+        LinkedNode pointer = circularList.tail;
         int tempMax = 0;
 
         if(!circularList.isEmpty()) {

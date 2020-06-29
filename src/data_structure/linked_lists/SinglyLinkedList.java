@@ -6,8 +6,8 @@ package data_structure.linked_lists;
 public class SinglyLinkedList
 {
 
-    public Node head = null;
-    public Node tail = null;
+    public LinkedNode head = null;
+    public LinkedNode tail = null;
 
     public boolean isEmpty()
     {
@@ -17,11 +17,11 @@ public class SinglyLinkedList
     public void addToHead(int elt)
     {
         if(isEmpty()) {
-            head = new Node(elt);
+            head = new LinkedNode(elt);
             tail = head;
         }else
             {
-                head = new Node(elt, head);
+                head = new LinkedNode(elt, head);
             }
     }
 
@@ -29,11 +29,11 @@ public class SinglyLinkedList
     {
         if(isEmpty())
         {
-            tail = new Node(elt);
+            tail = new LinkedNode(elt);
             head = tail;
         }else
             {
-                tail.next = new Node(elt);
+                tail.next = new LinkedNode(elt);
                 tail = tail.next;
             }
     }
@@ -59,7 +59,7 @@ public class SinglyLinkedList
             head = tail = null;
         else
             {
-                Node temp = head;
+                LinkedNode temp = head;
                 while(temp.next != tail)
                 {
                     temp = temp.next;
@@ -76,7 +76,7 @@ public class SinglyLinkedList
         if(index == 0)
             return deleteFromHead();
 
-        Node aux = head;
+        LinkedNode aux = head;
         for(int i = 0; i <= index; i++)
         {
             if(i + 1 == index)
@@ -97,7 +97,7 @@ public class SinglyLinkedList
 
     public void print()
     {
-        Node point = head;
+        LinkedNode point = head;
 
         while(point != null)
         {

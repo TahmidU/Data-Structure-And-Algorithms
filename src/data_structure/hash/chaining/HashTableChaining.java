@@ -27,7 +27,7 @@ public class HashTableChaining
     {
         if(table[hash(key)] == null)
         {
-            table[hash(key)] = new HashNode(key, value); // If its empty then simply add a new Node.
+            table[hash(key)] = new HashNode(key, value); // If its empty then simply add a new LinkedNode.
         }else
         {
             HashNode pointer = table[hash(key)];
@@ -40,7 +40,7 @@ public class HashTableChaining
                 }
                 pointer = pointer.next;
             }
-           table[hash(key)] = new HashNode(key, value, table[hash(key)]); // New Node now head. Old Head is now Head.next.
+           table[hash(key)] = new HashNode(key, value, table[hash(key)]); // New LinkedNode now head. Old Head is now Head.next.
         }
 
         elements++;

@@ -1,17 +1,17 @@
 package data_structure.linked_lists;
 
-public class Node
+public class LinkedNode
 {
     public int info;
-    public Node next;
+    public LinkedNode next;
 
-    public Node(int i, Node n)
+    public LinkedNode(int i, LinkedNode n)
     {
         info = i;
         next = n;
     }
 
-    public Node(int i)
+    public LinkedNode(int i)
     {
         this(i,null);
     }
