@@ -31,10 +31,10 @@ public class MergeSort
         System.arraycopy(arr, 0, left, 0, midPoint);
         System.arraycopy(arr, midPoint, right, 0, length-midPoint);
 
-        int[] arrayOne = mergeSort(left);
-        int[] arrayTwo = mergeSort(right);
+        left = mergeSort(left);
+        right = mergeSort(right);
 
-        return merge(arrayOne, arrayTwo);
+        return merge(left, right);
     }
 
     private int[] merge(int[] arr, int[] arr2){
