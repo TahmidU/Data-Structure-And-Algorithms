@@ -103,55 +103,20 @@ public class BinarySearchTree
         return node.left == null ? node.info : findSuccessor(node.left);
     }
 
-    /**
-     * Prints the position relative to the start node and the information each node contains.
-     * s - start node, r - right, l - left.
-     * @param node
-     * @param pos
-     */
-    public void printTree(TreeNode node, String pos)
+    public void printTree(TreeNode node)
     {
-        if(node == null) return;
-
-        System.out.println(pos + ": " + node.info);
-        printTree(node.left, pos+"l");
-        printTree(node.right, pos+"r");
+        searchMode.print(node);
     }
 
     public boolean search(int elt)
     {
         if(searchMode == null)
-            searchMode = new BSTSearch();
+            searchMode = new BFSTraversal();
         return searchMode.search(elt, root);
     }
 
     public void setSearch(ITreeSearch searchMode)
     {
         this.searchMode = searchMode;
-    }
-
-    public static void main(String[] args)
-    {
-        BinarySearchTree bst = new BinarySearchTree(10);
-        bst.add(20);
-        bst.add(11);
-        bst.add(40);
-        bst.add(33);
-
-        System.out.println("Is empty?" + bst.isEmpty());
-
-        bst.printTree(bst.root, "s");
-        bst.remove(20);
-
-        System.out.println();
-        bst.printTree(bst.root, "s");
-
-        System.out.println("Found 40? " + bst.search(40));
-        bst.setSearch(new InorderSearch());
-        System.out.println("Found 40? " +bst.search(40));
-        bst.setSearch(new PostorderSearch());
-        System.out.println("Found 40? " +bst.search(40));
-        bst.setSearch(new PreorderSearch());
-        System.out.println("Found 40? " +bst.search(40));
     }
 }
