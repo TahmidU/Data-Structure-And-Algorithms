@@ -5,11 +5,20 @@ import java.util.Iterator;
 /**
  * Linear Data Structure forming a LIFO queue.
  */
+@SuppressWarnings("CommentedOutCode")
 public class Stack implements Iterable<Integer>
 {
 
     private int count = 0;
-    private int[] data = new int[1];
+    private int[] data;
+
+    public Stack() {
+        this.data = new int[1];
+    }
+
+    public Stack(int count) {
+        this.data = new int[count];
+    }
 
     public boolean isEmpty()
     {
@@ -41,24 +50,8 @@ public class Stack implements Iterable<Integer>
         return popped;
     }
 
-    //Amortised Cost O(n)
-    public void push(int elt)
-    {
-        //If there's no space in the main.java.com.tahmidu.data_structure.stack...
-        if(count == data.length)
-        {
-            int[] d1 = new int[data.length + 1]; //Create a new array with +1 space than prev array.
-
-            //Copy elements from the prev array to the new array.
-            System.arraycopy(data, 0, d1, 0, count);
-            data = d1;
-        }
-        //Place new values at the last position of array.
-        data[count++] = elt;
-    }
-
     //Amortised Cost: O(1)
-    public void optimisedPush(int elt)
+    public void push(int elt)
     {
         if(count == data.length)
         {
@@ -79,40 +72,19 @@ public class Stack implements Iterable<Integer>
 
     @Override
     public Iterator<Integer> iterator() {
-        return new Iterator<Integer>() {
+        return new Iterator<>() {
             private int currIndex = 0;
 
             @Override
-            public boolean hasNext()
-            {
+            public boolean hasNext() {
                 return currIndex < data.length - 1 && data[currIndex] != 0;
             }
 
             @Override
-            public Integer next()
-            {
+            public Integer next() {
                 return data[currIndex++];
             }
         };
-    }
-
-    public static void main(String[] args)
-    {
-        Stack stack = new Stack();
-
-        for(int i = 1; i < 6; i++)
-            stack.push(i);
-
-        System.out.println("Reallocation Popping: " + stack.reallocatePop());
-        stack.optimisedPush(6);
-        System.out.println("Popping: " + stack.pop());
-
-        System.out.println("Is Empty? " + stack.isEmpty());
-        System.out.println("Is Full? " + stack.isFull());
-        System.out.println("Stack Length: " + stack.stackLength());
-
-        for (Integer integer : stack) System.out.println(integer);
-
     }
 }
 

@@ -73,11 +73,4 @@ public class HeapTest {
         Assert.assertArrayEquals(expectedHeap, resultHeap);
 
     }
-
-    @Test
-    public void isEmpty_shouldReturnTrue(){
-
-        Assert.assertTrue(heap.isEmpty());
-
-    }
 }
